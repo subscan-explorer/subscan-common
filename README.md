@@ -2,7 +2,7 @@
 
 ## Description
 
-Tuba is a lightweight, composable tools for Go!
+Subscan-common is a lightweight, composable tools for Go!
 
 ## Installation
 ```

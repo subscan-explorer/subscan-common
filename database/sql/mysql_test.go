@@ -15,7 +15,7 @@ import (
 // 	PRIMARY KEY ( `id` )
 //  )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-// INSERT INTO test_tbl (title, author, date)VALUES("mysql test", "test", NOW());;
+// INSERT INTO test_tbl (title, author, date)VALUES("mysql test", "test", NOW());
 
 var db *DB
 

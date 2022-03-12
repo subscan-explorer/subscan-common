@@ -13,6 +13,18 @@ type Book struct {
 	Date   string
 }
 
+// go test -v -test.run TestExec
+func TestExec(t *testing.T) {
+	execStr := `INSERT INTO test_tbl (title, author, date)VALUES("mysql test1", "test1", NOW());`
+	result, err := db.Exec(context.TODO(), execStr)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	rows, _ := result.RowsAffected()
+	fmt.Println("执行成功,影响行数", rows, "行")
+}
+
 // go test -v -test.run TestQueryRow
 func TestQueryRow(t *testing.T) {
 	sqlStr := "select * from test_tbl where id=?;"

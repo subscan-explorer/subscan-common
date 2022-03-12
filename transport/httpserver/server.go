@@ -33,7 +33,7 @@ func Run(c *Config) {
 	}()
 }
 
-func Stop(ctx context.Context) (err error) {
+func Shutdown(ctx context.Context) (err error) {
 	if err = httpServer.Shutdown(ctx); err != nil {
 		log.Errorf("http server stop error %v", err)
 	}

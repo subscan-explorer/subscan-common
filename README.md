@@ -12,4 +12,5 @@ go get -u github.com/subscan-explorer/subscan-common
 ## Feature
 - [x] Log (Based on the Uber Zap framework)
 - [x] HttpServer 
-- [x] Mysql Driver 
+- [x] Database (mysql)
+- [x] Cache  (redis) 

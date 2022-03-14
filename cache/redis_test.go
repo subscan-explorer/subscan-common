@@ -6,19 +6,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-redis/redis/v8"
+	xredis "github.com/go-redis/redis/v8"
 	"github.com/subscan-explorer/subscan-common/util/xtime"
 )
 
 var (
-	client *redis.Client
+	client *xredis.Client
 	cfg    *Config
 	ctx    = context.Background()
 )
 
 func init() {
 	cfg = &Config{
-		Addr:         "127.0.0.1:6379",
+		Addr:         "192.168.50.144:6379",
 		Username:     "",
 		Password:     "",
 		PoolSize:     1,
@@ -29,10 +29,11 @@ func init() {
 	client = NewRedisClient(cfg)
 }
 
+// go test -v -test.run TestGet
 func TestGet(t *testing.T) {
-	val, err := client.Get(ctx, "key").Result()
+	val, err := client.Get(ctx, "hello").Result()
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("key", val)
+	fmt.Println("value", val)
 }

@@ -4,7 +4,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/go-redis/redis/v8"
+	xredis "github.com/go-redis/redis/v8"
 	"github.com/subscan-explorer/subscan-common/util/xtime"
 )
 
@@ -20,12 +20,12 @@ type Config struct {
 }
 
 // NewRedisClient initial redis client .
-func NewRedisClient(c *Config) *redis.Client {
+func NewRedisClient(c *Config) *xredis.Client {
 	dialer := &net.Dialer{
 		Timeout:   time.Duration(c.Dial),
 		KeepAlive: time.Duration(c.KeepAlive),
 	}
-	return redis.NewClient(&redis.Options{
+	return xredis.NewClient(&xredis.Options{
 		Addr:         c.Addr,
 		Dialer:       dialer.DialContext,
 		Username:     c.Username,

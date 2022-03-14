@@ -1,8 +1,8 @@
 package sql
 
 import (
-	"github.com/subscan-explorer/subscan-common/log"
-	"github.com/subscan-explorer/subscan-common/util/xtime"
+	"github.com/subscan-explorer/subscan-common/core/log"
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 type Config struct {

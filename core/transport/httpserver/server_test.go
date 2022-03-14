@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/subscan-explorer/subscan-common/util/xtime"
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 // go test -v -test.run TestRun

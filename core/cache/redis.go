@@ -5,7 +5,7 @@ import (
 	"time"
 
 	xredis "github.com/go-redis/redis/v8"
-	"github.com/subscan-explorer/subscan-common/util/xtime"
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 // Config is redis client config .

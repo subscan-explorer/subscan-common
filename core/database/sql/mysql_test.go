@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/subscan-explorer/subscan-common/util/xtime"
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 // CREATE TABLE IF NOT EXISTS `test_tbl`(

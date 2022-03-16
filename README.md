@@ -13,4 +13,5 @@ go get -u github.com/subscan-explorer/subscan-common
 - [x] Log (Based on the Uber Zap framework)
 - [x] HttpServer 
 - [x] Database (mysql)
-- [x] Cache  (redis) 
+- [x] Cache (redis) 
+- [x] Auth (jwt)

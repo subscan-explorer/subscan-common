@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 var cfg *Config
@@ -14,7 +16,7 @@ func init() {
 		Issuer:     "subscan",
 		Subject:    "open platform",
 		Audience:   []string{"develop"},
-		Expires:    time.Now().Add(24 * time.Hour),
+		Expires:    xtime.Duration(time.Hour * 24),
 	}
 }
 

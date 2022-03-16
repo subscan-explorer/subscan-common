@@ -5,6 +5,7 @@ import (
 	"time"
 
 	jwtV4 "github.com/golang-jwt/jwt/v4"
+	"github.com/subscan-explorer/subscan-common/core/util/xtime"
 )
 
 type MyClaims struct {
@@ -18,14 +19,14 @@ type Config struct {
 	Issuer     string
 	Subject    string
 	Audience   []string
-	Expires    time.Time
+	Expires    xtime.Duration
 }
 
 func GenToken(c *Config, user interface{}) (string, error) {
 	claims := MyClaims{
 		user,
 		jwtV4.RegisteredClaims{
-			ExpiresAt: jwtV4.NewNumericDate(c.Expires),
+			ExpiresAt: jwtV4.NewNumericDate(time.Now().Add(time.Duration(c.Expires))),
 			IssuedAt:  jwtV4.NewNumericDate(time.Now()),
 			NotBefore: jwtV4.NewNumericDate(time.Now()),
 			Issuer:    c.Issuer,

@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang-jwt/jwt/v4 v4.3.0
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
+	github.com/mattbaird/gochimp v0.0.0-20200820164431-f1082bcdf63f
 	github.com/pkg/errors v0.8.1
 	go.uber.org/zap v1.21.0
 )

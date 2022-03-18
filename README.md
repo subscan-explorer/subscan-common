@@ -15,3 +15,4 @@ go get -u github.com/subscan-explorer/subscan-common
 - [x] Database (mysql)
 - [x] Cache (redis) 
 - [x] Auth (jwt)
+- [x] Mail (smtp、mailchimp) 

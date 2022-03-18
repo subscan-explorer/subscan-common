@@ -9,7 +9,7 @@ import (
 )
 
 type MyClaims struct {
-	User interface{} `json:"user"`
+	Info string `json:"info"`
 	jwtV4.RegisteredClaims
 }
 
@@ -22,9 +22,9 @@ type Config struct {
 	Expires    xtime.Duration
 }
 
-func GenToken(c *Config, user interface{}) (string, error) {
+func GenToken(c *Config, info string) (string, error) {
 	claims := MyClaims{
-		user,
+		info,
 		jwtV4.RegisteredClaims{
 			ExpiresAt: jwtV4.NewNumericDate(time.Now().Add(time.Duration(c.Expires))),
 			IssuedAt:  jwtV4.NewNumericDate(time.Now()),

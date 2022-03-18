@@ -1,6 +1,7 @@
 package jwt
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 	"time"
@@ -31,7 +32,8 @@ func TestGenToken(t *testing.T) {
 		ID:   1,
 		Name: "xiequan",
 	}
-	tokenStr, err := GenToken(cfg, u)
+	strByte, _ := json.Marshal(u)
+	tokenStr, err := GenToken(cfg, string(strByte))
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -42,5 +44,5 @@ func TestGenToken(t *testing.T) {
 		fmt.Println("===ParseToken====", err)
 		return
 	}
-	fmt.Println(res.User)
+	fmt.Println(res.Info)
 }

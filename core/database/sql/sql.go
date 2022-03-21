@@ -108,3 +108,10 @@ func (db *DB) Master() *DB {
 	}
 	return db.master
 }
+
+func (db *DB) WriteConn() *sql.DB {
+	if db.master == nil {
+		panic(ErrNoMaster)
+	}
+	return db.write.DB
+}

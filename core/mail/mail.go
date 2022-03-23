@@ -8,10 +8,11 @@ import (
 )
 
 type Config struct {
-	Server   string
-	Port     int
-	UserName string
-	APIKey   string
+	Server   string //smtp server .
+	Port     int    // smtp server port
+	UserName string // email or username
+	APIKey   string // password or apikey
+	FrontEnd string // front end landing page host
 }
 
 type Request struct {

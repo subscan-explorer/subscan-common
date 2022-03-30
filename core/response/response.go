@@ -41,7 +41,7 @@ func JSONFail(c *gin.Context, err error) {
 		if ok {
 			JSONResponse(c, http.StatusOK, ec.Code(), ec.Message(), nil)
 		} else {
-			JSONResponse(c, http.StatusOK, 500, ec.Error(), nil)
+			JSONResponse(c, http.StatusOK, ecode.ServerErr.Code(), err.Error(), nil)
 		}
 	}
 }

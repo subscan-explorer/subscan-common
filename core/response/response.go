@@ -4,6 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
+	"github.com/subscan-explorer/subscan-common/core/ecode"
 )
 
 // Resp .
@@ -29,8 +31,19 @@ func JSONSuccess(c *gin.Context, data interface{}) {
 }
 
 // JSONFail .
-func JSONFail(c *gin.Context, ecode int, msg string) {
-	JSONResponse(c, http.StatusOK, ecode, msg, nil)
+func JSONFail(c *gin.Context, err error) {
+	var (
+		ec ecode.Codes
+		ok bool
+	)
+	if err != nil {
+		ec, ok = errors.Cause(err).(ecode.Codes)
+		if ok {
+			JSONResponse(c, http.StatusOK, ec.Code(), ec.Message(), nil)
+		} else {
+			JSONResponse(c, http.StatusOK, 500, ec.Error(), nil)
+		}
+	}
 }
 
 // AbortWithJSONResponse .

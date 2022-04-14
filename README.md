@@ -16,3 +16,4 @@ go get -u github.com/subscan-explorer/subscan-common
 - [x] Cache (redis) 
 - [x] Auth (jwt)
 - [x] Mail (smtp、mailchimp) 
+- [x] Error Code (Supports custom error codes)

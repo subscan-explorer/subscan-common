@@ -40,8 +40,6 @@ type Config struct {
 type HttpClient struct {
 	conf       *Config
 	client     *xhttp.Client
-	dialer     *net.Dialer
-	transport  *xhttp.Transport
 	retryCount int
 	retrier    retry.Retriable
 }
@@ -225,7 +223,7 @@ func (c *HttpClient) request(ctx context.Context, req *xhttp.Request, res interf
 	}
 	defer response.Body.Close()
 	if response.StatusCode >= xhttp.StatusInternalServerError {
-		err = errors.Wrap(err, fmt.Sprintf("response.StatusCode %d", response.StatusCode))
+		err = errors.Wrap(errors.New("Server Error"), fmt.Sprintf("Remote URL %s Response.StatusCode %d", req.URL, response.StatusCode))
 		return
 	}
 	if bs, err = readAll(response.Body, minRead); err != nil {

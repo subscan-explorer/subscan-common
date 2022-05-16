@@ -31,7 +31,7 @@ func JSONSuccess(c *gin.Context, data interface{}) {
 }
 
 // JSONFail .
-func JSONFail(c *gin.Context, err error) {
+func JSONFail(c *gin.Context, err error, data interface{}) {
 	var (
 		ec ecode.Codes
 		ok bool
@@ -39,9 +39,9 @@ func JSONFail(c *gin.Context, err error) {
 	if err != nil {
 		ec, ok = errors.Cause(err).(ecode.Codes)
 		if ok {
-			JSONResponse(c, http.StatusOK, ec.Code(), ec.Message(), nil)
+			JSONResponse(c, http.StatusOK, ec.Code(), ec.Message(), data)
 		} else {
-			JSONResponse(c, http.StatusBadRequest, ecode.ServerErr.Code(), err.Error(), nil)
+			JSONResponse(c, http.StatusBadRequest, ecode.ServerErr.Code(), err.Error(), data)
 		}
 	}
 }
@@ -63,6 +63,6 @@ func AbortWithJSONSuccess(c *gin.Context, data interface{}) {
 }
 
 // AbortWithJSONFail .
-func AbortWithJSONFail(c *gin.Context, ecode int, msg string) {
-	AbortWithJSONResponse(c, http.StatusBadRequest, ecode, msg, nil)
+func AbortWithJSONFail(c *gin.Context, ecode int, msg string, data interface{}) {
+	AbortWithJSONResponse(c, http.StatusBadRequest, ecode, msg, data)
 }

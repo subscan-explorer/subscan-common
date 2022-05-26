@@ -60,10 +60,8 @@ func SetRedis(ctx context.Context, client *redis.Client) error {
 	go func() {
 		timer := time.NewTicker(5 * time.Second)
 		for {
-			select {
-			case <-timer.C:
-				loadScript(ctx)
-			}
+			<-timer.C
+			_ = loadScript(ctx)
 		}
 	}()
 	return loadScript(ctx)

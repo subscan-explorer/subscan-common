@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes"
 	"github.com/subscan-explorer/subscan-common/core/ecode/types"
 )
 
@@ -45,35 +43,6 @@ func (s *Status) Message() string {
 	return s.s.Message
 }
 
-// Details return error details
-func (s *Status) Details() []interface{} {
-	if s == nil || s.s == nil {
-		return nil
-	}
-	details := make([]interface{}, 0, len(s.s.Details))
-	for _, any := range s.s.Details {
-		detail := &ptypes.DynamicAny{}
-		if err := ptypes.UnmarshalAny(any, detail); err != nil {
-			details = append(details, err)
-			continue
-		}
-		details = append(details, detail.Message)
-	}
-	return details
-}
-
-// WithDetails WithDetails
-func (s *Status) WithDetails(pbs ...proto.Message) (*Status, error) {
-	for _, pb := range pbs {
-		anyMsg, err := ptypes.MarshalAny(pb)
-		if err != nil {
-			return s, err
-		}
-		s.s.Details = append(s.s.Details, anyMsg)
-	}
-	return s, nil
-}
-
 // Proto return origin protobuf message
 func (s *Status) Proto() *types.Status {
 	return s.s
@@ -82,16 +51,4 @@ func (s *Status) Proto() *types.Status {
 // FromCode create status from ecode
 func FromCode(code Code) *Status {
 	return &Status{s: &types.Status{Code: int32(code), Message: code.Message()}}
-}
-
-// FromProto new status from grpc detail
-func FromProto(pbMsg proto.Message) Codes {
-	if msg, ok := pbMsg.(*types.Status); ok {
-		if msg.Message == "" || msg.Message == strconv.FormatInt(int64(msg.Code), 10) {
-			// NOTE: if message is empty convert to pure Code, will get message from config center.
-			return Code(msg.Code)
-		}
-		return &Status{s: msg}
-	}
-	return Errorf(ServerErr, "invalid proto message get %v", pbMsg)
 }

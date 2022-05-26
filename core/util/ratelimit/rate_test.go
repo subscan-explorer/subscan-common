@@ -28,7 +28,7 @@ func init() {
 		KeepAlive:    xtime.Duration(time.Second),
 	}
 	client = redis.NewRedisClient(cfg)
-	SetRedis(context.TODO(), client)
+	_ = SetRedis(context.TODO(), client)
 }
 
 // go test -v -test.run Test1QPS

@@ -1,7 +1,7 @@
 package sql
 
 import (
-	"fmt"
+	"context"
 	"time"
 
 	"github.com/subscan-explorer/subscan-common/core/util/xtime"
@@ -21,11 +21,17 @@ var db *DB
 
 func init() {
 	cfg := &Config{
-		DSN:         "root:123456@tcp(192.168.50.144:3306)/test?timeout=5s&readTimeout=5s", // change your test db instance .
+		DSN:         "root:@tcp(127.0.0.1:3306)/subscan_test?timeout=5s&readTimeout=5s", // change your test db instance .
 		Active:      10,
 		Idle:        10,
 		IdleTimeout: xtime.Duration(time.Second),
 	}
 	db = NewMySQL(cfg)
-	fmt.Println(db)
+	_, _ = db.Exec(context.TODO(), `CREATE TABLE test_tbl (
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  title varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  author varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  date datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`)
 }

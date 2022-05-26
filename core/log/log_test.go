@@ -6,7 +6,6 @@ import (
 
 func init() {
 	cfg := &Config{
-		LogPath: "/data/logs/",
 		AppName: "test",
 		Debug:   false,
 	}
@@ -37,7 +36,7 @@ func TestError(t *testing.T) {
 	Errorf("hello number=%d", 100)
 }
 
-func TestFatal(t *testing.T) {
-	Fatal("hello")
-	Fatalf("hello  number=%d", 100)
-}
+// func TestFatal(t *testing.T) {
+// 	Fatal("hello")
+// 	Fatalf("hello  number=%d", 100)
+// }

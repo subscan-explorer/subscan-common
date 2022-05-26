@@ -19,7 +19,7 @@ var (
 
 func init() {
 	cfg = &redis.Config{
-		Addr:         "192.168.50.144:6379",
+		Addr:         "127.0.0.1:6379",
 		Username:     "",
 		Password:     "",
 		PoolSize:     1,

@@ -1,18 +1,11 @@
 package orm
 
-import (
-	"fmt"
-
-	"gorm.io/gorm"
-)
-
-var db *gorm.DB
+import "gorm.io/gorm"
 
 func init() {
 	cfg := &Config{
 		DriverName: "mysql",
-		DSN:        "root:123456@tcp(192.168.50.144:3306)/test?timeout=5s&readTimeout=5s", // change your test db instance .
+		DSN:        "root:@tcp(127.0.0.1:3306)/subscan_test?timeout=5s&readTimeout=5s", // change your test db instance .
 	}
-	db = NewORM(cfg)
-	fmt.Println(db)
+	_ = NewORM(cfg, &gorm.Config{})
 }

@@ -47,9 +47,6 @@ jobs:
         with:
           go-version: 1.17
 
-      - name: Build
-        run: make build
-
       - name: Test
         if: "!contains(steps.check-base.outputs.COMMIT_MESSAGE, '[skip test]')"
         run: |
